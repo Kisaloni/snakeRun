@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1538229050 source:g:\documents\c_c++\projects\snack_run\main.cpp
+	<iostream>
+	<cstdlib>
+	<conio.h>
+	<cksupport.h>
+
+1538229050 source:e:\documents\c_c++\projects\snack_run\main.cpp
+	<iostream>
+	<cstdlib>
+	<conio.h>
+	<cksupport.h>
+
