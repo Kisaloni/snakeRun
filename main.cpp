@@ -18,7 +18,8 @@ void Setup();
 void Draw();
 void Input();
 void logic();
-
+void First_Show();
+void Border();
 /*******************Main()************************************/
 int main()
 {
@@ -46,38 +47,66 @@ void Setup()
     Snack_y[0]=14;
     fd_x=rand()%99,fd_y=rand()%29;
     Score=0;
+    First_Show();
 }
 /*************************************************************/
+/***********************First Show****************************/
+void First_Show()
+{
+    Border();
+    Set_tcol(10);
+    for(int j=0;j<3;j++)
+    {
+        gotoxy(30,14+j);
+        for(int i=0;i<40;i++)
+        {
+            cout<<"#";
+        }
+        cout<<"\n";
+    }
+    Set_tcol(9);
+    gotoxy(45,15);
+    cout<<"SNACK RUN";
+    Set_tcol(14);
+    gotoxy(0,31);
+    cout<<"Press Any Key To Continue...";
+    getch();
+}
+/************************************************************/
+/************************border*********************************/
+void Border()
+{
+    int d=0;
+    Set_tcol(12);
+    for(int i=0;i<101;i++)
+    {
+        Sleep(d);
+        cout<<(char)178;
+    }
+    for(int i=0;i<31;i++)
+    {
+        Sleep(d);
+        gotoxy(100,i);
+        cout<<(char)178;
+    }
+    for(int i=99;i>=0;i--)
+    {
+        Sleep(d);
+        gotoxy(i,30);
+        cout<<(char)178;
+    }
+    for(int i=29;i>=0;i--)
+    {
+        Sleep(d);
+        gotoxy(0,i);
+        cout<<(char)178;
+    }
+    /*************************border***********************/
+}
+/************************************************************/
 void Draw()
 {
-    {   /*******************border*****************************/
-        int d=0;
-        Set_tcol(12);
-        for(int i=0;i<101;i++)
-        {
-            Sleep(d);
-            cout<<(char)178;
-        }
-        for(int i=0;i<31;i++)
-        {
-            Sleep(d);
-            gotoxy(100,i);
-            cout<<(char)178;
-        }
-        for(int i=99;i>=0;i--)
-        {
-            Sleep(d);
-            gotoxy(i,30);
-            cout<<(char)178;
-        }
-        for(int i=29;i>=0;i--)
-        {
-            Sleep(d);
-            gotoxy(0,i);
-            cout<<(char)178;
-        }
-        /*************************border***********************/
-    }
+    Border();
     {
         /***********************Snack**************************/
         Set_tcol(10);
