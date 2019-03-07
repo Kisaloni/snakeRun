@@ -19,19 +19,12 @@ void Draw();
 void Input();
 void logic();
 void First_Show();
+void Menu();
 void Border();
 /*******************Main()************************************/
 int main()
 {
     Setup();
-    while(!Gameover)
-    {
-        system("cls");
-        Draw();
-        Input();
-        logic();
-        Sleep(s_m);
-    }
     gotoxy(0,30);
     return 0;
 }
@@ -48,8 +41,46 @@ void Setup()
     fd_x=rand()%99,fd_y=rand()%29;
     Score=0;
     First_Show();
+    Menu();
 }
 /*************************************************************/
+void Menu()
+{
+    int ch;
+    system("cls");
+    Border();
+    Set_tcol(9);
+    gotoxy(40,14);
+    cout<<"1.Play";
+    gotoxy(40,16);
+    cout<<"2.High Score";
+    gotoxy(40,18);
+    cout<<"3.How to play";
+    gotoxy(40,20);
+    cout<<"4.Exit";
+    gotoxy(0,31);
+    fflush(stdin);
+    getch();
+    cin>>ch;
+    switch(ch)
+    {
+        case 1:
+            while(!Gameover)
+            {
+                system("cls");
+                Draw();
+                Input();
+                logic();
+                Sleep(s_m);
+            }
+            break;
+        case 2:break;
+        case 3:break;
+        case 4:break;
+        default :cout<<"Invalid Choice";break;
+    }
+
+}
 /***********************First Show****************************/
 void First_Show()
 {
