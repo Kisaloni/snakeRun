@@ -60,7 +60,6 @@ void Menu()
     cout<<"4.Exit";
     gotoxy(0,31);
     fflush(stdin);
-    getch();
     cin>>ch;
     switch(ch)
     {
