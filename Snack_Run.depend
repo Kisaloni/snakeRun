@@ -11,9 +11,10 @@
 	<conio.h>
 	<cksupport.h>
 
-1551951828 source:e:\documents\github desktop\snakerun\main.cpp
+1559681599 source:e:\documents\github desktop\snakerun\main.cpp
 	<iostream>
 	<cstdlib>
 	<conio.h>
+	<fstream>
 	<cksupport.h>
 

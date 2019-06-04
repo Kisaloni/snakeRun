@@ -1,6 +1,7 @@
 #include <iostream>
 #include<cstdlib>
 #include<conio.h>
+#include<fstream>
 #include<cksupport.h>
 using namespace std;
 
@@ -13,6 +14,7 @@ int fd_x=20,fd_y=20;
 int len=0;
 int Score=0;
 int s_m=100,s_a=50;
+int highScore=0;
 /*******************Function Declaration***********************/
 void Setup();
 void Draw();
@@ -25,6 +27,8 @@ void Border();
 int main()
 {
     Setup();
+    First_Show();
+    Menu();
     gotoxy(0,30);
     return 0;
 }
@@ -40,45 +44,60 @@ void Setup()
     Snack_y[0]=14;
     fd_x=rand()%99,fd_y=rand()%29;
     Score=0;
-    First_Show();
-    Menu();
+    ifstream scoreFile("HighScore");
+    scoreFile>>highScore;
+    scoreFile.close();
 }
 /*************************************************************/
 void Menu()
 {
     int ch;
-    system("cls");
-    Border();
-    Set_tcol(9);
-    gotoxy(40,14);
-    cout<<"1.Play";
-    gotoxy(40,16);
-    cout<<"2.High Score";
-    gotoxy(40,18);
-    cout<<"3.How to play";
-    gotoxy(40,20);
-    cout<<"4.Exit";
-    gotoxy(0,31);
-    fflush(stdin);
-    cin>>ch;
-    switch(ch)
+    do
     {
-        case 1:
-            while(!Gameover)
-            {
+        Setup();
+        system("cls");
+        Border();
+        Set_tcol(9);
+        gotoxy(40,14);
+        cout<<"1.Play";
+        gotoxy(40,16);
+        cout<<"2.High Score";
+        gotoxy(40,18);
+        cout<<"3.How to play";
+        gotoxy(40,20);
+        cout<<"4.Exit";
+        gotoxy(0,31);
+        cin>>ch;
+        switch(ch)
+        {
+            case 1:
+                while(!Gameover)
+                {
+                    system("cls");
+                    Draw();
+                    Input();
+                    logic();
+                    Sleep(s_m);
+                }
+                break;
+            case 2:
                 system("cls");
-                Draw();
-                Input();
-                logic();
-                Sleep(s_m);
-            }
-            break;
-        case 2:break;
-        case 3:break;
-        case 4:break;
-        default :cout<<"Invalid Choice";break;
-    }
-
+                Border();
+                Set_tcol(12);
+                gotoxy(40,14);
+                {
+                    ifstream scoreFile("HighScore");
+                    scoreFile>>highScore;
+                    scoreFile.close();
+                }
+                cout<<"High score: "<<highScore;
+                getch();
+                break;
+            case 3:break;
+            case 4:break;
+            default :cout<<"Invalid Choice";break;
+        }
+    }while(ch!=4);
 }
 /***********************First Show****************************/
 void First_Show()
@@ -239,6 +258,15 @@ void logic()
             gotoxy(105,15);
             Set_tcol(14);
             cout<<"GAME OVER";
+            if(Score>highScore)
+            {
+                ofstream file("HighScore");
+                file<<Score;
+                file.close();
+                Set_tcol(12);
+                gotoxy(30,14);
+                cout<<"You created a new high score: "<<Score;
+            }
             gotoxy(0,31);
             cout<<"Press Space bar to continue... ";
             for(;;)
@@ -259,6 +287,15 @@ void logic()
                 Set_tcol(14);
                 cout<<"GAME OVER";
                 gotoxy(0,31);
+                if(Score>highScore)
+                {
+                    ofstream file("HighScore");
+                    file<<Score;
+                    file.close();
+                    Set_tcol(12);
+                    gotoxy(40,14);
+                    cout<<"You created a new high score: "<<Score;
+                }
                 cout<<"Press Space bar to continue... ";
                 for(;;)
                 {
