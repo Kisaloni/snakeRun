@@ -83,7 +83,7 @@ void Menu()
             case 2:
                 system("cls");
                 Border();
-                Set_tcol(12);
+                Set_tcol(14);
                 gotoxy(40,14);
                 {
                     ifstream scoreFile("HighScore");
@@ -93,7 +93,22 @@ void Menu()
                 cout<<"High score: "<<highScore;
                 getch();
                 break;
-            case 3:break;
+            case 3:
+                {
+                    system("cls");
+                    Set_tcol(14);
+                    gotoxy(40,2);
+                    ifstream file("HTP");
+                    char str[255];
+                    while(!file.eof())
+                    {
+                        file.getline(str, 255);
+                        cout<<str<<endl;
+                    }
+                    file.close();
+                }
+                getch();
+                break;
             case 4:break;
             default :cout<<"Invalid Choice";break;
         }
